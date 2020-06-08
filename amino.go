@@ -361,12 +361,10 @@ func (cdc *Codec) MustUnmarshalBinaryBare(bz []byte, ptr interface{}) {
 
 func (cdc *Codec) MarshalJSON(o interface{}) ([]byte, error) {
 
-	oAsJson, err := json.MarshalIndent(o, "		", "\t")
+	oAsJson, _ := json.MarshalIndent(o, "		", "\t")
 
-	if err != nil {
-		fmt.Println("func (cdc *Codec) MarshalJSON(o interface{}) ([]byte, error) {--------------------")
-		fmt.Println(string(oAsJson))
-	}
+	fmt.Println("func (cdc *Codec) MarshalJSON(o interface{}) ([]byte, error) {--------------------")
+	fmt.Println(string(oAsJson))
 
 	rv := reflect.ValueOf(o)
 	if rv.Kind() == reflect.Invalid {
